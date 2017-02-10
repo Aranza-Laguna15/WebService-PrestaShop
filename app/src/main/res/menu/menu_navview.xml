@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_section_1"
+            android:icon="@drawable/ic_products"
+            android:title="@string/section_1"/>
+        <item
+            android:id="@+id/menu_section_2"
+            android:icon="@drawable/ic_order"
+            android:title="@string/section_2"/>
+        <item
+            android:id="@+id/menu_section_3"
+            android:icon="@drawable/ic_commerce"
+            android:title="@string/section_3"/>
+    </group>
+
+   <!-- <item
+        android:id="@+id/navigation_sub_header"
+        android:title="@string/options">
+        <menu>
+            <item
+                android:id="@+id/menu_option_1"
+              android:title="@string/option_1"/>
+              android:icon="@drawable/ic_menu"
+            <item
+                android:id="@+id/menu_option_2"
+                android:title="@string/option_2"/>
+        </menu>
+    </item>-->
+</menu>
