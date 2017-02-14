@@ -1,5 +1,7 @@
 package com.example.user.e_gigi;
 
+import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -10,6 +12,11 @@ import android.widget.ImageView;
 
 public class DetProduct extends Fragment {
     private static final String EXTRA_SAMPLE = "sample";
+    Bundle bundle = getArguments();
+    String actionTitle = "";
+    Bitmap imageBitmap = null;
+    String transText = "";
+    String transitionName = "";
 
     public DetProduct() {
         // Required empty public constructor
@@ -33,7 +40,7 @@ public class DetProduct extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_det_product, container, false);
         ImageView imageView=(ImageView)view.findViewById(R.id.product);
-        DrawableCompat.setTint(imageView.getDrawable(), 1214);
+
         return view;
     }
 
