@@ -28,18 +28,12 @@ public static FragmentProductos newInstance(){
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view= inflater.inflate(R.layout.fragment_productos, container, false);
+        View view= inflater.inflate(R.layout.fragment_pedidos, container, false);
         imageView=(ImageView)view.findViewById(R.id.product);
-        view.findViewById(R.id.go_button).setOnClickListener(new View.OnClickListener(){
+        view.findViewById(R.id.shared_button).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                DetProduct detProduct = DetProduct.newInstance();
 
-                FragmentManager fragmentManager=getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.fragment_products,detProduct)
-                        .addToBackStack(null)
-                        .commit();
             }
         });
         return view;

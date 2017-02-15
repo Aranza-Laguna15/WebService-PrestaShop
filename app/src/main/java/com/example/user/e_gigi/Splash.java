@@ -26,6 +26,7 @@ ImageView imageView;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash);
+        imageView=(ImageView)this.findViewById(R.id.imageView);
 
         TimerTask task =  new TimerTask() {
             @Override
@@ -39,6 +40,7 @@ ImageView imageView;
         };
         Timer timer= new Timer();
         timer.schedule(task, Splash_delay);
+
     }
 
 }

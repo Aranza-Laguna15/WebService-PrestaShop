@@ -6,30 +6,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Created by User on 15/02/2017.
+ */
 
-public class FragmentPedidos extends Fragment {
+public class FragmentNous extends Fragment {
 
-    public FragmentPedidos() {
+    public FragmentNous() {
         // Required empty public constructor
     }
 
-    public static FragmentPedidos newInstance(String param1, String param2) {
-        FragmentPedidos fragment = new FragmentPedidos();
-
+    public static FragmentNous newInstance() {
+        FragmentNous fragment = new FragmentNous();
         fragment.setRetainInstance(true);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pedidos, container, false);
-    }
+        View v = inflater.inflate(R.layout.content_layout, container, false);
 
-}
+        return v;
+    }
+}// END
