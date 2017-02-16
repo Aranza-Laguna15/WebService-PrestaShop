@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/cv"
+            android:elevation="100dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:cardBackgroundColor= "@color/cardview_light_background">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/product"
+        android:src="@drawable/egigi"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitXY"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="244dp"
+        android:padding="16dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:weightSum="1"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="62dp"
+            android:layout_alignParentEnd="true">
+
+
+            <TextView
+                android:layout_width="254dp"
+                android:layout_height="42dp"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/product_name"
+                android:text="Titulo"
+                android:textSize="30sp"
+                android:textColor="@color/md_indigo_A700"
+                android:layout_below="@+id/product"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:layout_weight="0.29" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.40" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_calendar"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textAlignment="center"
+                    android:layout_marginRight="3dp"
+                    android:tint="@color/cardview_dark_background"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/date_product"
+                    android:text="00-00-0000"
+                    android:layout_below="@+id/product_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="0.06" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/product_desc"
+                android:text="Descripcion nfkjsfa fdnsfhsa mnifejw mnfidsfubv ..."
+                android:textColor="@color/cardview_dark_background"
+                android:layout_below="@+id/date_product"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="0.31"
+                android:textAlignment="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/product_desc">
+                <ImageButton
+                    android:id="@+id/shared_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="16dp"
+                    app:srcCompat="@drawable/ic_share"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:tint="@color/cardview_dark_background"
+                    tools:ignore="VectorDrawableCompat"
+                    android:layout_below="@+id/linearLayout2"
+                    android:layout_alignParentStart="true" />
+                <ImageButton
+                    android:id="@+id/like_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="16dp"
+                    app:srcCompat="@drawable/ic_like"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:tint="@color/cardview_dark_background"
+                    tools:ignore="VectorDrawableCompat"
+                    android:layout_below="@+id/linearLayout2"
+                    android:layout_alignParentStart="true" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/comments_button"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginRight="16dp"
+                    app:srcCompat="@drawable/ic_comment"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:tint="@color/cardview_dark_background"
+                    tools:ignore="VectorDrawableCompat"
+                    android:layout_below="@+id/linearLayout2"
+                    android:layout_alignParentStart="true"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

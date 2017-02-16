@@ -1,6 +1,10 @@
 package com.example.user.e_gigi;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -20,15 +24,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setToolbar(); // Añadir la toolbar
+        if(conexionInternet()){
+            //Permiso para mantener una conexion externa abierta
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
+            setToolbar(); // Añadir la toolbar
 
-        viewPager = (ViewPager)findViewById(R.id.pager);
-        viewPager.setAdapter(new TabAdapter(getSupportFragmentManager()));
+            viewPager = (ViewPager)findViewById(R.id.pager);
+            viewPager.setAdapter(new TabAdapter(getSupportFragmentManager()));
 
-        //   setupViewPager(viewPager);
-        TabLayout tabs = (TabLayout)findViewById(R.id.tabs);
-        tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
-        tabs.setupWithViewPager(viewPager);
+            //   setupViewPager(viewPager);
+            TabLayout tabs = (TabLayout)findViewById(R.id.tabs);
+            tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
+            tabs.setupWithViewPager(viewPager);
+
+        }else{
+            Toast toastBack = Toast.makeText(this, "Sin conexión a internet", Toast.LENGTH_SHORT);
+            toastBack.show();
+        }
+
+
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -54,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
              }
          }
-    private void setToolbar(){
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+    private void setToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -64,4 +79,14 @@ public class MainActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
     }
+
+        public boolean conexionInternet(){
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo=cm.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
+    }
+
 } //END

@@ -2,7 +2,6 @@ package com.example.user.e_gigi;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,14 +27,14 @@ public static FragmentProductos newInstance(){
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view= inflater.inflate(R.layout.fragment_pedidos, container, false);
+        View view= inflater.inflate(R.layout.fragment_content_product, container, false);
         imageView=(ImageView)view.findViewById(R.id.product);
-        view.findViewById(R.id.shared_button).setOnClickListener(new View.OnClickListener(){
+/*        view.findViewById(R.id.shared_button).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
 
             }
-        });
+        });*/
         return view;
     }
 
