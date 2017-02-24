@@ -1,2 +1,2 @@
 # WebService PrestaShop
-Aplicación móvil para consumiendo web service de PrestaShop
+Aplicación móvil para consumir web service de PrestaShop
