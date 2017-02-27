@@ -1,2 +1,2 @@
-# E-gigi
-Aplicación móvil para la empresa E-GiGi
+# WebService PrestaShop
+Aplicación móvil para consumir web service de PrestaShop
