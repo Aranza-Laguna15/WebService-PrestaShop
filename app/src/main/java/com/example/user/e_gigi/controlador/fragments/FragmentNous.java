@@ -1,10 +1,12 @@
-package com.example.user.e_gigi;
+package com.example.user.e_gigi.controlador.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.user.e_gigi.R;
 
 /**
  * Created by User on 15/02/2017.

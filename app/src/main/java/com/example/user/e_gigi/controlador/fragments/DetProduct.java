@@ -1,14 +1,14 @@
-package com.example.user.e_gigi;
+package com.example.user.e_gigi.controlador.fragments;
 
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.user.e_gigi.R;
 
 public class DetProduct extends Fragment {
     private static final String EXTRA_SAMPLE = "sample";

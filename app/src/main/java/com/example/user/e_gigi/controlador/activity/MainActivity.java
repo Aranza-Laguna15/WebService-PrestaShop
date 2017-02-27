@@ -1,10 +1,11 @@
-package com.example.user.e_gigi;
+package com.example.user.e_gigi.controlador.activity;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -13,18 +14,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.Toast;
 
+import com.example.user.e_gigi.R;
+import com.example.user.e_gigi.controlador.TabAdapter;
+
+
 public class MainActivity extends AppCompatActivity {
 
     private long lastPress=0;
     private long timeLimit=2000;
     ViewPager viewPager;
+    FloatingActionButton fbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(conexionInternet()){
+        fbutton=(FloatingActionButton)findViewById(R.id.button_Download);
+        fbutton.setOnClickListener(onClickListener);
+
             //Permiso para mantener una conexion externa abierta
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
             setToolbar(); // Añadir la toolbar
@@ -37,14 +45,28 @@ public class MainActivity extends AppCompatActivity {
             tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
             tabs.setupWithViewPager(viewPager);
 
+
+    }
+    private View.OnClickListener onClickListener=new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            if(v ==  fbutton)
+                fbutton_onClick();
+        }
+    };
+
+    private void fbutton_onClick(){
+        if(conexionInternet()){
+
+            Toast toastBack1 = Toast.makeText(this, "Descargando contenido", Toast.LENGTH_SHORT);
+            toastBack1.show();
         }else{
             Toast toastBack = Toast.makeText(this, "Sin conexión a internet", Toast.LENGTH_SHORT);
             toastBack.show();
         }
+        }
 
 
-
-    }
 
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();

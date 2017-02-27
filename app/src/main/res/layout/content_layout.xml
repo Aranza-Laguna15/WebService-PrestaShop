@@ -21,7 +21,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/nousTitle"
             android:textSize="30sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/md_blue_900"
             android:layout_weight="0.80"
             android:layout_below="@+id/product"
             android:layout_centerHorizontal="true" />

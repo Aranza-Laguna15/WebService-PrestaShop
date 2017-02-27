@@ -1,13 +1,14 @@
-package com.example.user.e_gigi;
+package com.example.user.e_gigi.controlador.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+
+import com.example.user.e_gigi.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

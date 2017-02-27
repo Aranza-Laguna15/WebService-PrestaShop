@@ -1,8 +1,12 @@
-package com.example.user.e_gigi;
+package com.example.user.e_gigi.controlador;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.user.e_gigi.controlador.activity.ECommerce;
+import com.example.user.e_gigi.controlador.fragments.FragmentNous;
+import com.example.user.e_gigi.controlador.fragments.FragmentProductos;
 
 /**
  * Created by User on 14/02/2017.
@@ -33,15 +37,15 @@ public class TabAdapter extends FragmentPagerAdapter {
         Fragment frag=null;
         switch (position){
             case 0:
-                frag=FragmentNous.newInstance();
+                frag= FragmentNous.newInstance();
                 fragmentTransaction = true;
                 break;
             case 1:
-                frag=FragmentProductos.newInstance();
+                frag= FragmentProductos.newInstance();
                 fragmentTransaction = true;
                 break;
             case 2:
-                frag=ECommerce.newInstance();
+                frag= ECommerce.newInstance();
                 fragmentTransaction = true;
                 break;
         }

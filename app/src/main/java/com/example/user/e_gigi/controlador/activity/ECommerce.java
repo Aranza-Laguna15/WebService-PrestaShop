@@ -1,4 +1,4 @@
-package com.example.user.e_gigi;
+package com.example.user.e_gigi.controlador.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
+
+import com.example.user.e_gigi.R;
 
 public class ECommerce extends Fragment {
 
