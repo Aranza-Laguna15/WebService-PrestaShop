@@ -6,10 +6,12 @@ package com.example.user.e_gigi.tools;
 
 public class Constantes {
     public static final int CODIGO_DETALLE = 100;
+    public static final String EXTRA_ID = "IDEXTRA";
 
-    public static final String GET_PRODUCTOS= "http://www.e-gigi.com/shop/webservice/php/productosJSON.php";
-    public static final String GET_COMMENTS= "http://www.e-gigi.com/shop/webservice/php/comentariosJSON.php";
-    public static final String GET_PEDIDOS= "http://www.e-gigi.com/shop/webservice/php/pedidosJSON.php";
+    public static final String GET_PRODUCTOS= "http://www.e-gigi.com/shop/webservice/php/getAllProduct.php";
+    public static final String GET_BY_ID= "http://www.e-gigi.com/shop/webservice/php/getByIdProduct.php";
+    public static final String GET_COMMENTS= "http://www.e-gigi.com/shop/webservice/php/getAllComments.php";
+    public static final String GET_PEDIDOS= "http://www.e-gigi.com/shop/webservice/php/getAllPedidos.php";
 
 
 }

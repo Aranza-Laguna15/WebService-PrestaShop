@@ -3,6 +3,7 @@ package com.example.user.e_gigi.controlador.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -55,6 +56,8 @@ public static FragmentProductos newInstance(){
         View view= inflater.inflate(R.layout.fragment_content_product, container, false);
         lista=(RecyclerView) view.findViewById(R.id.reciclador);
         lista.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity());
+        lista.setLayoutManager(layoutManager);
         cargarAdaptador();
 
         return view;
@@ -99,13 +102,5 @@ public static FragmentProductos newInstance(){
             Log.d(TAG,e.getMessage());
         }
     }
-
-
-
-    public void onViewCreated(View view, Bundle savedInstanceState){
-        super.onViewCreated(view, savedInstanceState);
-        cardView=(CardView)view.findViewById(R.id.cv);
     }
 
-
-}
