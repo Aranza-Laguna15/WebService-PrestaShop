@@ -42,6 +42,8 @@ public class TabAdapter extends FragmentPagerAdapter {
                 break;
             case 1:
                 frag= FragmentProductos.newInstance();
+                FragmentProductos frP= new FragmentProductos();
+//                frP.cargarAdaptador();
                 fragmentTransaction = true;
                 break;
             case 2:
@@ -51,7 +53,7 @@ public class TabAdapter extends FragmentPagerAdapter {
         }
         return frag;
     }
-    public  CharSequence getPageTitle(int position){
+    public CharSequence getPageTitle(int position){
         return tabTitles[position];
     }
 }

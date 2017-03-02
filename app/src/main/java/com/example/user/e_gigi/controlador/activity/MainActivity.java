@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
             tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
             tabs.setupWithViewPager(viewPager);
 
+        if(conexionInternet()){
+
+        }
+
 
     }
     private View.OnClickListener onClickListener=new View.OnClickListener(){

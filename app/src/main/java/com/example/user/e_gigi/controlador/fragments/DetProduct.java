@@ -20,6 +20,7 @@ import com.example.user.e_gigi.tools.Constantes;
 import com.example.user.e_gigi.web.VolleySingleton;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,12 +28,13 @@ public class DetProduct extends Fragment {
     private static final String TAG = DetProduct.class.getSimpleName();
 
  private ImageView cabecera;
-    private TextView titulo;
-    private TextView descripcion;
-    private TextView fecha;
-    private TextView categoria;
-    private TextView precio;
+    private TextView txt_titulo;
+    private TextView txt_descripcion;
+    private TextView txt_fecha;
+    private TextView txt_categoria;
+    private TextView txt_precio;
     private String extra;
+
     private Gson gson = new Gson();
 
 
@@ -61,11 +63,11 @@ public class DetProduct extends Fragment {
         View view=inflater.inflate(R.layout.fragment_det_product, container, false);
 
         cabecera=(ImageView)view.findViewById(R.id.product);
-        titulo=(TextView)view.findViewById(R.id.det_product_name);
-        descripcion=(TextView)view.findViewById(R.id.product_desc);
-        fecha=(TextView)view.findViewById(R.id.det_date_product);
-        categoria=(TextView)view.findViewById(R.id.det_categoria);
-        precio=(TextView)view.findViewById(R.id.det_precio);
+        txt_titulo=(TextView)view.findViewById(R.id.det_product_name);
+        txt_descripcion=(TextView)view.findViewById(R.id.descripcion);
+        txt_fecha=(TextView)view.findViewById(R.id.det_date_product);
+        txt_categoria=(TextView)view.findViewById(R.id.det_categoria);
+        txt_precio=(TextView)view.findViewById(R.id.det_precio);
 
         extra = getArguments().getString(Constantes.EXTRA_ID);
 
@@ -95,25 +97,38 @@ public class DetProduct extends Fragment {
                 )
         );
     }
-
-    private void procesarRespuesta(JSONObject response){
-        try{
-            String mensaje= response.getString("estado");
-
-            switch (mensaje){
-                case "1":
-                    JSONObject object = response.getJSONObject("producto");
-                    Products products = gson.fromJson(object.toString(),Products.class);
-
-                 /*   switch (products.getCategoria()){
+    /*   switch (products.getCategoria()){
                         case "":
                             break;
                     }*/
-                    titulo.setText(products.getTitulo());
-                    descripcion.setText(products.getDescripcion());
-                    fecha.setText(products.getFecha());
-                    precio.setText(products.getPrecio());
-                    categoria.setText(products.getCategoria());
+    private void procesarRespuesta(JSONObject response){
+        try {
+            String mensaje = response.getString("estado");
+            String titulo, descripcion,fecha,categoria,precio,stock,idProduct;
+            switch (mensaje) {
+                case "1":
+                    JSONArray producto = response.getJSONArray("producto");
+
+                        for(int i=0;i<mensaje.length();i++) {
+                            JSONObject js = producto.getJSONObject(i);
+                            Products products = new Products(
+                                    idProduct = js.getString("id_product"),
+                                    titulo = js.getString("name"),
+                                    descripcion = js.getString("name"),
+                                    fecha = js.getString("date"),
+                                    categoria = js.getString("category"),
+                                    precio = js.getString("price"),
+                                    stock = js.getString("stock")
+                            );
+                            Log.e("POPO1: ",idProduct + " " + products.getTitulo()+ " " + descripcion+ " " + fecha + " " + precio + " " + categoria + " " + stock);
+
+
+                        txt_titulo.setText(products.getTitulo());
+                        txt_descripcion.setText(products.getDescripcion());
+                        txt_fecha.setText(products.getFecha());
+                        txt_precio.setText(products.getPrecio());
+                        txt_categoria.setText(products.getCategoria());
+                        }
                     break;
 
                 case "2":
@@ -131,10 +146,13 @@ public class DetProduct extends Fragment {
                             mensaje3,
                             Toast.LENGTH_LONG).show();
                     break;
-
             }
+
         } catch (JSONException e) {
-            e.printStackTrace();
+            Toast.makeText(
+                    getActivity(),
+                    e.getMessage(),
+                    Toast.LENGTH_LONG).show();
         }
     }
 }

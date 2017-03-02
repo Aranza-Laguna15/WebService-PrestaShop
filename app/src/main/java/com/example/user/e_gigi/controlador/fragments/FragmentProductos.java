@@ -27,7 +27,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class FragmentProductos extends Fragment {
     CardView cardView;
@@ -57,7 +59,7 @@ public static FragmentProductos newInstance(){
         lista=(RecyclerView) view.findViewById(R.id.reciclador);
         lista.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
-        lista.setLayoutManager(layoutManager);
+
         cargarAdaptador();
 
         return view;
@@ -86,12 +88,27 @@ public static FragmentProductos newInstance(){
     public void procesarRespuesta(JSONObject response){
         try{
             String estado = response.getString("estado");
+            String titulo, descripcion,fecha,categoria,precio,stock,idProduct;
+            List<Products> data=new ArrayList<>();
             switch (estado){
                 case "1":
                     JSONArray mensaje = response.getJSONArray("productos");
-                    Products[] productos = gson.fromJson(mensaje.toString(),Products[].class);
-                    adapter=new ProductsAdapter(Arrays.asList(productos),getActivity());
-                    lista.setAdapter(adapter);
+                   for(int i=0;i<mensaje.length();i++){
+                    JSONObject js=mensaje.getJSONObject(i);
+                       Products products = new Products(
+                         idProduct=js.getString("id_product"),
+                         titulo=js.getString("name"),
+                         descripcion=js.getString("name"),
+                         fecha=js.getString("date"),
+                         categoria=js.getString("category"),
+                         precio=js.getString("price"),
+                         stock=js.getString("stock")
+                       );
+                       data.add(products);
+                      adapter= new ProductsAdapter(data,getActivity());
+                       lista.setAdapter(adapter);
+                       lista.setLayoutManager(layoutManager);
+                }
                     break;
                 case "2":
                     String mensaje2= response.getString("mensaje");
@@ -102,5 +119,11 @@ public static FragmentProductos newInstance(){
             Log.d(TAG,e.getMessage());
         }
     }
-    }
+    } //END
 
+/*
+Products[] productos = gson.fromJson(mensaje.toString(),Products[].class);
+                    Log.e("POPO2: ", mensaje.toString());
+                    adapter=new ProductsAdapter(Arrays.asList(productos),getActivity());
+                    Log.e("POPO3: ", Arrays.asList(productos).toString());
+                    lista.setAdapter(adapter); */

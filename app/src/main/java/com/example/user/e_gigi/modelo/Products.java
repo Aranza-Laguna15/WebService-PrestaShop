@@ -17,14 +17,16 @@ public class Products {
  //   private String imagen;
 
 
-    public Products(String idProduct, String titulo, String descripcion, String fecha, String categoria, String precio, String stock, String comentarios, String autorComents, String fechaComents) {
+    public Products(String idProduct, String titulo, String descripcion, String fecha, String categoria, String precio, String stock) {
         this.idProduct = idProduct;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.categoria = categoria;
         this.precio = precio;
         this.stock = stock;
+        this.fecha =fecha;
     }
+
 
     public String getIdProduct() {
         return idProduct;

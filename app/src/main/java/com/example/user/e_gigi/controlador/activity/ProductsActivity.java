@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.user.e_gigi.R;
@@ -32,12 +34,19 @@ public class ProductsActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if(getSupportActionBar()!=null){
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            // Poner ícono del drawer toggle
+            ab.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+            ab.setDisplayHomeAsUpEnabled(true);
         }
+
              if(getIntent().getStringExtra(Constantes.EXTRA_ID)!=null)
                  idProduct=getIntent().getStringExtra(Constantes.EXTRA_ID);
+
         if(savedInstanceState==null){
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.pager, DetProduct.createInstance(idProduct),"ProductsDetail")
@@ -54,6 +63,5 @@ public class ProductsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }// END

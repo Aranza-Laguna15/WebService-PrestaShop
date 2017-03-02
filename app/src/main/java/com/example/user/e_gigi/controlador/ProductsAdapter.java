@@ -12,6 +12,8 @@ import com.example.user.e_gigi.R;
 import com.example.user.e_gigi.controlador.activity.ProductsActivity;
 import com.example.user.e_gigi.modelo.Products;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 /**
@@ -67,6 +69,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             titulo=(TextView)v.findViewById(R.id.det_product_name);
             descripcion=(TextView)v.findViewById(R.id.product_desc);
             fecha=(TextView)v.findViewById(R.id.det_date_product);
+          //  categoria=(TextView)v.findViewById(R.id.det_categoria);
             this.listener=listener;
             v.setOnClickListener(this);
         }
