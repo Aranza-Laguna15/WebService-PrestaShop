@@ -14,21 +14,18 @@ import com.example.user.e_gigi.controlador.fragments.FragmentProductos;
 
 public class TabAdapter extends FragmentPagerAdapter {
 
-
-   // private final Product[] items;
    final int PAGE_COUNT = 3;
     boolean fragmentTransaction = false;
     private String tabTitles[] =
             new String[] {"E-GiGi", "Productos", "E-Commerce"};
 
 
-    public TabAdapter(FragmentManager fm /* ,Product[] items*/) {
+    public TabAdapter(FragmentManager fm ) {
         super(fm);
     }
 
     @Override
     public int getCount() {
-       // return items.length -1;
         return PAGE_COUNT;
     }
 
@@ -42,8 +39,6 @@ public class TabAdapter extends FragmentPagerAdapter {
                 break;
             case 1:
                 frag= FragmentProductos.newInstance();
-                FragmentProductos frP= new FragmentProductos();
-//                frP.cargarAdaptador();
                 fragmentTransaction = true;
                 break;
             case 2:

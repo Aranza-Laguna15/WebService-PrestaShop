@@ -18,7 +18,6 @@ import com.example.user.e_gigi.R;
 import com.example.user.e_gigi.modelo.Products;
 import com.example.user.e_gigi.tools.Constantes;
 import com.example.user.e_gigi.web.VolleySingleton;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,9 +32,8 @@ public class DetProduct extends Fragment {
     private TextView txt_fecha;
     private TextView txt_categoria;
     private TextView txt_precio;
+    private TextView txt_stock;
     private String extra;
-
-    private Gson gson = new Gson();
 
 
     public DetProduct() {
@@ -60,7 +58,7 @@ public class DetProduct extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_det_product, container, false);
+        View view=inflater.inflate(R.layout.fragment_detail_products, container, false);
 
         cabecera=(ImageView)view.findViewById(R.id.product);
         txt_titulo=(TextView)view.findViewById(R.id.det_product_name);
@@ -68,8 +66,9 @@ public class DetProduct extends Fragment {
         txt_fecha=(TextView)view.findViewById(R.id.det_date_product);
         txt_categoria=(TextView)view.findViewById(R.id.det_categoria);
         txt_precio=(TextView)view.findViewById(R.id.det_precio);
+        txt_stock= (TextView)view.findViewById(R.id.det_stock);
 
-        extra = getArguments().getString(Constantes.EXTRA_ID);
+       extra = getArguments().getString(Constantes.EXTRA_ID);
 
         cargarDatos();
 
@@ -78,7 +77,7 @@ public class DetProduct extends Fragment {
 
     public void cargarDatos(){
         String newURL= Constantes.GET_BY_ID+"?id_product="+ extra;
-
+        Log.e("EXTRA ",extra);
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(
                 new JsonObjectRequest(
                         Request.Method.GET,
@@ -104,7 +103,7 @@ public class DetProduct extends Fragment {
     private void procesarRespuesta(JSONObject response){
         try {
             String mensaje = response.getString("estado");
-            String titulo, descripcion,fecha,categoria,precio,stock,idProduct;
+            String titulo="", descripcion="",fecha="",categoria="",precio="",stock="",idProduct = "";
             switch (mensaje) {
                 case "1":
                     JSONArray producto = response.getJSONArray("producto");
@@ -122,13 +121,26 @@ public class DetProduct extends Fragment {
                             );
                             Log.e("POPO1: ",idProduct + " " + products.getTitulo()+ " " + descripcion+ " " + fecha + " " + precio + " " + categoria + " " + stock);
 
-
-                        txt_titulo.setText(products.getTitulo());
-                        txt_descripcion.setText(products.getDescripcion());
-                        txt_fecha.setText(products.getFecha());
-                        txt_precio.setText(products.getPrecio());
-                        txt_categoria.setText(products.getCategoria());
+                            idProduct = products.getIdProduct();
+                            titulo = products.getTitulo();
+                            descripcion = products.getDescripcion();
+                            fecha = products.getFecha();
+                            categoria = products.getCategoria();
+                            precio = products.getPrecio();
+                            stock = products.getStock();
                         }
+
+
+                        txt_titulo.setText(titulo);
+                        txt_descripcion.setText(descripcion);
+                        txt_fecha.setText(fecha);
+                        txt_precio.setText("$"+precio);
+                        txt_categoria.setText(categoria);
+                        txt_stock.setText(stock);
+
+
+
+
                     break;
 
                 case "2":

@@ -34,7 +34,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     public int getItemCount() {
         return items.size();
     }
-
+    /*
+        Permite limpiar todos los elementos del recycler
+         */
+    public void clear(){
+        items.clear();
+        notifyDataSetChanged();
+    }
     @Override
     public ProductsViewHolder onCreateViewHolder(ViewGroup parent, int i) {
         View v= LayoutInflater.from(parent.getContext())
@@ -78,6 +84,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
         }
     }
 }
+
 
 interface ItemClickListener {
     void onItemClick(View view, int position);

@@ -33,7 +33,7 @@ public class ProductsActivity extends AppCompatActivity {
     }
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,7 +41,7 @@ public class ProductsActivity extends AppCompatActivity {
         if (ab != null) {
             // Poner ícono del drawer toggle
             ab.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
-            ab.setDisplayHomeAsUpEnabled(true);
+           ab.setDisplayHomeAsUpEnabled(true);
         }
 
              if(getIntent().getStringExtra(Constantes.EXTRA_ID)!=null)
@@ -49,7 +49,7 @@ public class ProductsActivity extends AppCompatActivity {
 
         if(savedInstanceState==null){
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.pager, DetProduct.createInstance(idProduct),"ProductsDetail")
+                    .add(R.id.container, DetProduct.createInstance(idProduct),"DetProduct")
                     .commit();
         }
     }
