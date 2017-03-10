@@ -1,5 +1,7 @@
 package com.example.user.e_gigi.modelo;
 
+import android.provider.BaseColumns;
+
 /**
  * Created by User on 15/02/2017.
  */
@@ -87,5 +89,17 @@ public class Products {
     public boolean comparate(Products products){
       return this.descripcion.compareTo(descripcion)==0 &&
         this.idProduct.compareTo(idProduct)==0 && this.titulo.compareTo(titulo)==0;
+    }
+
+    public static abstract class ProductsEntry implements BaseColumns{
+        public static final String TABLE_NAME="productos";
+
+        public static final String ID="id_producto";
+        public static final String titulo="titulo";
+        public static final String descripcion="descripcion";
+        public static final String fecha="fecha";
+        public static final String categoria="categoria";
+        public static final String precio="precio";
+        public static final String stock="stock";
     }
 }

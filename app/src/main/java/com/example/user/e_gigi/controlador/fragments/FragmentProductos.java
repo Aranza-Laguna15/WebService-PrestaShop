@@ -157,27 +157,16 @@ public static FragmentProductos newInstance(){
         }
 
         protected void onPostExecute(String res){
-            adapter.clear();
-            cargarAdaptador();
-            refreshLayout.setRefreshing(false);
-            Toast.makeText(getActivity(),"Lista actualizada",Toast.LENGTH_SHORT).show();
+            if(lista == null){
+                Toast.makeText(getActivity(),"Lista vacia",Toast.LENGTH_SHORT).show();
+            }else{
+                adapter.clear();
+                cargarAdaptador();
+                refreshLayout.setRefreshing(false);
+                Toast.makeText(getActivity(),"Lista actualizada",Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 
     } //END
-
-/*
-Products[] productos = gson.fromJson(mensaje.toString(),Products[].class);
-                    Log.e("POPO2: ", mensaje.toString());
-                    adapter=new ProductsAdapter(Arrays.asList(productos),getActivity());
-                    Log.e("POPO3: ", Arrays.asList(productos).toString());
-                    lista.setAdapter(adapter);
-int DURACION = 3 * 1000; // 3 segundos de carga
-try {
-        Thread.sleep(DURACION);
-        adapter.clear();
-        cargarAdaptador();
-        refreshLayout.setRefreshing(false);
-        } catch (InterruptedException e) {
-        e.printStackTrace();
-        */
