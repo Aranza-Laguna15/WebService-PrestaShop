@@ -1,5 +1,11 @@
 package com.example.user.e_gigi.controlador.fragments;
 
+import android.content.Context;
+import android.database.Cursor;
+
+import android.database.sqlite.SQLiteException;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +28,7 @@ import com.example.user.e_gigi.R;
 import com.example.user.e_gigi.controlador.ProductsAdapter;
 import com.example.user.e_gigi.modelo.Products;
 import com.example.user.e_gigi.tools.Constantes;
+import com.example.user.e_gigi.web.SQLiteDB;
 import com.example.user.e_gigi.web.VolleySingleton;
 
 import org.json.JSONArray;
@@ -31,7 +38,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Created by Aranza on 07/02/2017.
+ * Clase Fragment del Producto, conexion a la BD y WebService
+ */
 public class FragmentProductos extends Fragment {
 
     private static final String TAG = FragmentProductos.class.getSimpleName();
@@ -40,13 +50,14 @@ public class FragmentProductos extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private SwipeRefreshLayout refreshLayout;
     private Spinner spinner;
+    SQLiteDB sqLiteDB;
+    Cursor cursor;
 
-   public FragmentProductos() {
+    public FragmentProductos() {
         // Required empty public constructor
     }
 
-
-public static FragmentProductos newInstance(){
+    public static FragmentProductos newInstance(){
     FragmentProductos fragmentProductos = new FragmentProductos();
     fragmentProductos.setRetainInstance(true);
     return fragmentProductos;
@@ -57,18 +68,20 @@ public static FragmentProductos newInstance(){
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view= inflater.inflate(R.layout.fragment_content_product, container, false);
+
+       //Spinner
         spinner=(Spinner)view.findViewById(R.id.spinner);
         ArrayAdapter spiner_adapter=ArrayAdapter.createFromResource(getActivity(), R.array.categorias, android.R.layout.simple_spinner_item);
         spiner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spiner_adapter);
 
+        //RecyclerView
         lista=(RecyclerView) view.findViewById(R.id.reciclador);
-
         lista.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
 
+        //SwipeRefreshLayout
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
-
         refreshLayout.setColorSchemeResources(
                 R.color.md_blue_200,
                 R.color.md_blue_300,
@@ -84,11 +97,52 @@ public static FragmentProductos newInstance(){
                     }
                 }
         );
-        cargarAdaptador();
-        return view;
+
+        //SQLiteDB
+        sqLiteDB = new SQLiteDB(getActivity());
+
+        //Carga la lista de la BD
+        cargarSQL();
+        adapter = new ProductsAdapter(cursor,getActivity());
+        lista.setAdapter(adapter);
+        lista.setLayoutManager(layoutManager);
+
+         return view;
+    }
+    //Verifica que haya conexion a internet
+    public boolean conexionInternet(){
+        ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=cm.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
+            return true;
+        }
+        return false;
     }
 
-    public void cargarAdaptador(){
+    private void cargarSQL(){
+        new ProductsLoadTask().execute();
+    }
+
+    //Metodo AsyncTask para obtener todos los productos de la BD
+    private class ProductsLoadTask extends AsyncTask<Void, Void, Cursor>{
+
+    @Override
+    protected Cursor doInBackground(Void... params) {
+        return sqLiteDB.getAllProducts();
+    }
+
+    protected void onPostExecute(Cursor cursor){
+        if(cursor != null && cursor.getCount() > 0){
+            adapter.swapCursor(cursor);
+        }else if(cursor==null){
+            descargarProductos();
+        }else{
+            Toast.makeText(getActivity(),"Error al cargar Productos",Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+    //Realiza la peticion en Volley para conectarse con el WebService
+    public void descargarProductos(){
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(
                 new JsonObjectRequest(
                         Request.Method.GET,
@@ -97,22 +151,26 @@ public static FragmentProductos newInstance(){
                         new Response.Listener<JSONObject>(){
                             public void onResponse(JSONObject response){
                                 procesarRespuesta(response);
+                                cargarSQL();
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                Log.d(TAG, "Error Volley: " + error.toString());
+                                Log.e(TAG, "Error Volley: " + error.toString());
+                                Toast.makeText(getActivity(),"El servidor ha tardado demasiado tiempo en responder",Toast.LENGTH_SHORT).show();
+                                cargarSQL();
                             }
                         }
                 )
         );
     }
+    //Procesa los datos obtenidos del WebService y los manda al metodo chargeProducts() para cargarlos a la BD
     public void procesarRespuesta(JSONObject response){
         try{
             String estado = response.getString("estado");
             String titulo, descripcion,fecha,categoria,precio,stock,idProduct;
-            List<Products> data=new ArrayList<>();
+
             switch (estado){
                 case "1":
                     JSONArray mensaje = response.getJSONArray("productos");
@@ -127,10 +185,7 @@ public static FragmentProductos newInstance(){
                          precio=js.getString("price"),
                          stock=js.getString("stock")
                        );
-                       data.add(products);
-                       adapter= new ProductsAdapter(data,getActivity());
-                       lista.setAdapter(adapter);
-                       lista.setLayoutManager(layoutManager);
+                      chargeProducts(products);
                 }
                     break;
                 case "2":
@@ -139,10 +194,22 @@ public static FragmentProductos newInstance(){
                     break;
             }
         } catch (JSONException e) {
-            Log.d(TAG,e.getMessage());
+            Log.e(TAG,e.getLocalizedMessage());
         }
     }//END procesarRespuesta
 
+    //Carga los productos a la BD
+    private void chargeProducts(Products data) {
+        sqLiteDB=new SQLiteDB(getActivity());
+         try{
+            sqLiteDB.getWritableDatabase();
+            sqLiteDB.saveProducts(data);
+        }catch (SQLiteException e){
+            Log.e("ERROR AL INSERTAR: ",e.getLocalizedMessage());
+        }
+    }
+
+//Metodo AsyncTask para el SwipeRefreshLayout
     private class AsyncRefresh extends AsyncTask<String, String, String>{
         static final int DURACION = 3 * 1000; // 3 segundos de carga
 
@@ -155,18 +222,14 @@ public static FragmentProductos newInstance(){
             }
             return null;
         }
-
         protected void onPostExecute(String res){
-            if(lista == null){
-                Toast.makeText(getActivity(),"Lista vacia",Toast.LENGTH_SHORT).show();
-            }else{
-                adapter.clear();
-                cargarAdaptador();
+            if(conexionInternet()){
+                descargarProductos();
                 refreshLayout.setRefreshing(false);
-                Toast.makeText(getActivity(),"Lista actualizada",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Actualización completa",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getActivity(),"Actualización fallida",Toast.LENGTH_SHORT).show();
             }
-
         }
     }
-
-    } //END
+} //END

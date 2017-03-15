@@ -11,11 +11,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.*;
 import android.widget.Toast;
 
 import com.example.user.e_gigi.R;
 import com.example.user.e_gigi.controlador.TabAdapter;
+import com.example.user.e_gigi.controlador.fragments.FragmentProductos;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -59,18 +61,20 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    //Botón flotante
     private void fbutton_onClick(){
-        if(conexionInternet()){
-
-            Toast toastBack1 = Toast.makeText(this, "Descargando contenido", Toast.LENGTH_SHORT);
-            toastBack1.show();
-        }else{
-            Toast toastBack = Toast.makeText(this, "Sin conexión a internet", Toast.LENGTH_SHORT);
-            toastBack.show();
+        if(conexionInternet()){ //Verifica si hay internet
+           Toast.makeText(this, "Descargando contenido", Toast.LENGTH_SHORT).show();
+            FragmentProductos productos = new FragmentProductos();
+            try{
+                productos.descargarProductos(); //Si hay internet, descarga los productos
+            }catch (Exception e){
+                Log.e("Error FloatButton: ",e.getLocalizedMessage());
+            }
+        }else{ //Si no
+            Toast.makeText(this, "Sin conexión a internet", Toast.LENGTH_SHORT).show();
         }
         }
-
-
 
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -105,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
     }
-
+//Metodo para saber si hay o no conexión
         public boolean conexionInternet(){
             ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo networkInfo=cm.getActiveNetworkInfo();

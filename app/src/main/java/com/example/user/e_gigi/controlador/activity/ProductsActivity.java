@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +15,7 @@ import com.example.user.e_gigi.controlador.fragments.DetProduct;
 import com.example.user.e_gigi.tools.Constantes;
 
 /**
- * Created by User on 27/02/2017.
+ * Created by Aranza on 27/02/2017.
  */
 
 public class ProductsActivity extends AppCompatActivity {
@@ -39,13 +40,13 @@ public class ProductsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
         if (ab != null) {
-            // Poner ícono del drawer toggle
+            // Poner ícono en ActionBar
             ab.setHomeAsUpIndicator(R.drawable.ic_arrow_back);
-           ab.setDisplayHomeAsUpEnabled(true);
+            ab.setDisplayHomeAsUpEnabled(true);
         }
 
-             if(getIntent().getStringExtra(Constantes.EXTRA_ID)!=null)
-                 idProduct=getIntent().getStringExtra(Constantes.EXTRA_ID);
+         if(getIntent().getStringExtra(Constantes.EXTRA_ID)!=null)
+         idProduct=getIntent().getStringExtra(Constantes.EXTRA_ID);
 
         if(savedInstanceState==null){
             getSupportFragmentManager().beginTransaction()
@@ -53,7 +54,7 @@ public class ProductsActivity extends AppCompatActivity {
                     .commit();
         }
     }
-
+//Menu
     public boolean onOptionsItemSelected(MenuItem item){
         int id= item.getItemId();
         switch (id){
@@ -63,5 +64,6 @@ public class ProductsActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }// END

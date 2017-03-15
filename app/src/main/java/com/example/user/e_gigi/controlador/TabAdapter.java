@@ -9,7 +9,7 @@ import com.example.user.e_gigi.controlador.fragments.FragmentNous;
 import com.example.user.e_gigi.controlador.fragments.FragmentProductos;
 
 /**
- * Created by User on 14/02/2017.
+ * Created by Aranza on 14/02/2017.
  */
 
 public class TabAdapter extends FragmentPagerAdapter {

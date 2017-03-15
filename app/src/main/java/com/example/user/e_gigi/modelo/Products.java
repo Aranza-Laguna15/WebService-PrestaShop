@@ -1,9 +1,11 @@
 package com.example.user.e_gigi.modelo;
 
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.provider.BaseColumns;
 
 /**
- * Created by User on 15/02/2017.
+ * Created by Aranza on 15/02/2017.
  */
 
 public class Products {
@@ -28,8 +30,31 @@ public class Products {
         this.stock = stock;
         this.fecha =fecha;
     }
+//Obtener lista de productos desde el Cursor
+    public Products(Cursor cursor){
+        idProduct= cursor.getString(cursor.getColumnIndex(ProductsEntry.ID));
+        titulo=cursor.getString(cursor.getColumnIndex(ProductsEntry.titulo));
+        descripcion=cursor.getString(cursor.getColumnIndex(ProductsEntry.descripcion));
+        categoria=cursor.getString(cursor.getColumnIndex(ProductsEntry.categoria));
+        precio=cursor.getString(cursor.getColumnIndex(ProductsEntry.precio));
+        stock=cursor.getString(cursor.getColumnIndex(ProductsEntry.stock));
+        fecha=cursor.getString(cursor.getColumnIndex(ProductsEntry.fecha));
+    }
 
+//Metodo para insertar datos a la DB
+    public ContentValues toContentValues(){
+        ContentValues values = new ContentValues();
+        values.put(ProductsEntry.ID,idProduct);
+        values.put(ProductsEntry.titulo,titulo);
+        values.put(ProductsEntry.descripcion,descripcion);
+        values.put(ProductsEntry.categoria,categoria);
+        values.put(ProductsEntry.precio,precio);
+        values.put(ProductsEntry.stock,stock);
+        values.put(ProductsEntry.fecha,fecha);
+        return values;
+    }
 
+//Getters y Setters
     public String getIdProduct() {
         return idProduct;
     }
@@ -90,7 +115,7 @@ public class Products {
       return this.descripcion.compareTo(descripcion)==0 &&
         this.idProduct.compareTo(idProduct)==0 && this.titulo.compareTo(titulo)==0;
     }
-
+//Variables para uso global
     public static abstract class ProductsEntry implements BaseColumns{
         public static final String TABLE_NAME="productos";
 
