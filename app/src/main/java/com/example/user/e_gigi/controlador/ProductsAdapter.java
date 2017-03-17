@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,17 +28,22 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 
     private Cursor items;
     private Context context;
-
+    String getAdapterPosition;
     public ProductsAdapter(Cursor items, Context context){
         this.context=context;
         this.items=items;
     }
 //Intercambia el cursor actual por uno nuevo.
-    public void swapCursor(final Cursor cursor){
-       if(cursor!=null){
-           items = cursor;
-           notifyDataSetChanged();
-       }
+    public Cursor swapCursor(final Cursor cursor){
+      if(items==cursor){
+          return null;
+      }
+        Cursor oldCursor = items;
+        this.items = cursor;
+        if(cursor!= null){
+            this.notifyDataSetChanged();
+        }
+          return oldCursor;
     }
 
     @Override
@@ -84,8 +90,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     }
 
     public void onItemClick(View view, int position) {
+        Log.e("ITEM: ",getAdapterPosition);
         ProductsActivity.launch(
-                (Activity) context, items.getString(position));
+                (Activity) context, getAdapterPosition);
     }
 //Habilitar los textView y el ClickListener en la lista para pasar el ID
     public class ProductsViewHolder extends RecyclerView.ViewHolder
@@ -106,7 +113,9 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             v.setOnClickListener(this);
         }
         public void onClick(View v){
+            Log.e("ADAPTER POSITION", String.valueOf(getAdapterPosition()));
             listener.onItemClick(v,getAdapterPosition());
+            getAdapterPosition= String.valueOf(getAdapterPosition());
         }
     }
 }// End ProductsAdapter
@@ -114,3 +123,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 interface ItemClickListener {
     void onItemClick(View view, int position);
 }
+ /* if(cursor!=null){
+           items = cursor;
+           notifyDataSetChanged();
+       } */

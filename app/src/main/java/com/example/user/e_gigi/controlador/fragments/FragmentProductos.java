@@ -49,7 +49,6 @@ public class FragmentProductos extends Fragment {
     private RecyclerView lista;
     private RecyclerView.LayoutManager layoutManager;
     private SwipeRefreshLayout refreshLayout;
-    private Spinner spinner;
     SQLiteDB sqLiteDB;
     Cursor cursor;
 
@@ -69,12 +68,6 @@ public class FragmentProductos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view= inflater.inflate(R.layout.fragment_content_product, container, false);
 
-       //Spinner
-        spinner=(Spinner)view.findViewById(R.id.spinner);
-        ArrayAdapter spiner_adapter=ArrayAdapter.createFromResource(getActivity(), R.array.categorias, android.R.layout.simple_spinner_item);
-        spiner_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(spiner_adapter);
-
         //RecyclerView
         lista=(RecyclerView) view.findViewById(R.id.reciclador);
         lista.setHasFixedSize(true);
@@ -83,10 +76,10 @@ public class FragmentProductos extends Fragment {
         //SwipeRefreshLayout
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
         refreshLayout.setColorSchemeResources(
-                R.color.md_blue_200,
-                R.color.md_blue_300,
                 R.color.md_blue_400,
-                R.color.md_blue_500
+                R.color.md_blue_600,
+                R.color.md_blue_800,
+                R.color.md_blue_900
         );
         // Iniciar la tarea asíncrona al revelar el indicador
         refreshLayout.setOnRefreshListener(
@@ -228,6 +221,7 @@ public class FragmentProductos extends Fragment {
                 refreshLayout.setRefreshing(false);
                 Toast.makeText(getActivity(),"Actualización completa",Toast.LENGTH_SHORT).show();
             }else{
+                refreshLayout.setRefreshing(false);
                 Toast.makeText(getActivity(),"Actualización fallida",Toast.LENGTH_SHORT).show();
             }
         }

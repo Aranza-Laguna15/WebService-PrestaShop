@@ -4,7 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.user.e_gigi.controlador.activity.ECommerce;
+import com.example.user.e_gigi.controlador.fragments.ECommerce;
+import com.example.user.e_gigi.controlador.fragments.FragmentOrders;
 import com.example.user.e_gigi.controlador.fragments.FragmentNous;
 import com.example.user.e_gigi.controlador.fragments.FragmentProductos;
 
@@ -14,10 +15,10 @@ import com.example.user.e_gigi.controlador.fragments.FragmentProductos;
 
 public class TabAdapter extends FragmentPagerAdapter {
 
-   final int PAGE_COUNT = 3;
+   final int PAGE_COUNT = 4;
     boolean fragmentTransaction = false;
     private String tabTitles[] =
-            new String[] {"E-GiGi", "Productos", "E-Commerce"};
+            new String[] {"E-GiGi", "Productos", "E-Commerce","Comentarios"};
 
 
     public TabAdapter(FragmentManager fm ) {
@@ -44,6 +45,10 @@ public class TabAdapter extends FragmentPagerAdapter {
             case 2:
                 frag= ECommerce.newInstance();
                 fragmentTransaction = true;
+                break;
+            case 3:
+                frag= FragmentOrders.newInstace();
+                fragmentTransaction=true;
                 break;
         }
         return frag;

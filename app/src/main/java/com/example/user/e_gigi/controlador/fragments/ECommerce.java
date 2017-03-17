@@ -1,4 +1,4 @@
-package com.example.user.e_gigi.controlador.activity;
+package com.example.user.e_gigi.controlador.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

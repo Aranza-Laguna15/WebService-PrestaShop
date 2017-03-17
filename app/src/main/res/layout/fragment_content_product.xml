@@ -17,13 +17,7 @@
             android:id="@+id/toolbar_products"
             android:titleTextColor="@color/md_white_1000">
 
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner"
-                />
-
-            </android.support.v7.widget.Toolbar>
+        </android.support.v7.widget.Toolbar>
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
