@@ -8,20 +8,24 @@
             android:id="@+id/cv"
             android:elevation="100dp"
             android:layout_gravity="center"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
             app:cardUseCompatPadding="true"
             app:cardBackgroundColor= "@color/cardview_light_background">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/detail_photo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true" />
 
         <TextView
-            android:layout_width="254dp"
-            android:layout_height="42dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:id="@+id/det_product_name"
             android:text="Titulo"
@@ -33,63 +37,52 @@
             android:layout_centerHorizontal="true" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:weightSum="1"
-            android:orientation="vertical"
-            android:layout_below="@+id/det_product_name"
-            android:layout_alignParentStart="true">
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1">
 
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
+            <Space
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:weightSum="1">
+                android:layout_weight="0.39" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.40" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_calendar"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:textAlignment="center"
-                    android:layout_marginRight="3dp"
-                    android:tint="@color/cardview_dark_background"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:id="@+id/det_date_product"
-                    android:text="00-00-0000"
-                    android:layout_below="@+id/det_product_name"
-                    android:layout_centerHorizontal="true"
-                    android:layout_weight="0.06" />
-
-            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_calendar"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textAlignment="center"
+                android:layout_marginRight="3dp"
+                android:tint="@color/cardview_dark_background"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/product_desc"
-                android:text="Descripcion nfkjsfa fdnsfhsa mnifejw mnfidsfubv ..."
-                android:textColor="@color/cardview_dark_background"
-                android:layout_below="@+id/det_date_product"
+                android:id="@+id/det_date_product"
+                android:text="00-00-0000"
+                android:layout_below="@+id/det_product_name"
                 android:layout_centerHorizontal="true"
-                android:layout_weight="0.31"
-                android:textAlignment="center" />
+                android:layout_weight="0.06" />
 
         </LinearLayout>
-    </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/product_desc"
+            android:text="Descripcion nfkjsfa fdnsfhsa mnifejw mnfidsfubv ..."
+            android:textColor="@color/cardview_dark_background"
+            android:layout_below="@+id/det_date_product"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.39"
+            android:textAlignment="center" />
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>
 </RelativeLayout>

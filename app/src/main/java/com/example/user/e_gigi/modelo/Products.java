@@ -18,10 +18,10 @@ public class Products {
     private String categoria;
     private String precio;
     private String stock;
- //   private String imagen;
+    private String imagen;
 
 
-    public Products(String idProduct, String titulo, String descripcion, String fecha, String categoria, String precio, String stock) {
+    public Products(String idProduct, String titulo, String descripcion, String fecha, String categoria, String precio, String stock, String imagen) {
         this.idProduct = idProduct;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -29,6 +29,7 @@ public class Products {
         this.precio = precio;
         this.stock = stock;
         this.fecha =fecha;
+        this.imagen=imagen;
     }
 //Obtener lista de productos desde el Cursor
     public Products(Cursor cursor){
@@ -39,6 +40,7 @@ public class Products {
         precio=cursor.getString(cursor.getColumnIndex(ProductsEntry.precio));
         stock=cursor.getString(cursor.getColumnIndex(ProductsEntry.stock));
         fecha=cursor.getString(cursor.getColumnIndex(ProductsEntry.fecha));
+        imagen=cursor.getString(cursor.getColumnIndex(ProductsEntry.imagen));
     }
 
 //Metodo para insertar datos a la DB
@@ -51,6 +53,7 @@ public class Products {
         values.put(ProductsEntry.precio,precio);
         values.put(ProductsEntry.stock,stock);
         values.put(ProductsEntry.fecha,fecha);
+        values.put(ProductsEntry.imagen,imagen);
         return values;
     }
 
@@ -111,6 +114,14 @@ public class Products {
         this.stock = stock;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public boolean comparate(Products products){
       return this.descripcion.compareTo(descripcion)==0 &&
         this.idProduct.compareTo(idProduct)==0 && this.titulo.compareTo(titulo)==0;
@@ -126,5 +137,6 @@ public class Products {
         public static final String categoria="categoria";
         public static final String precio="precio";
         public static final String stock="stock";
+        public static final String imagen="imagen";
     }
 }

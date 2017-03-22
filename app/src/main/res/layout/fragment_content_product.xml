@@ -9,16 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/md_blue_800"
-            android:theme="?attr/actionBarTheme"
-            android:minHeight="?attr/actionBarSize"
-            android:id="@+id/toolbar_products"
-            android:titleTextColor="@color/md_white_1000">
-
-        </android.support.v7.widget.Toolbar>
-
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefresh"
             android:layout_width="match_parent"

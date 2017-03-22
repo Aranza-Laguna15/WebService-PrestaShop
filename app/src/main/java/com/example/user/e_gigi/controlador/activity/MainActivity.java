@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fbutton=(FloatingActionButton)findViewById(R.id.button_Download);
-        fbutton.setOnClickListener(onClickListener);
-
             //Permiso para mantener una conexion externa abierta
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().permitNetwork().build());
             setToolbar(); // Añadir la toolbar
@@ -46,35 +43,7 @@ public class MainActivity extends AppCompatActivity {
             TabLayout tabs = (TabLayout)findViewById(R.id.tabs);
             tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
             tabs.setupWithViewPager(viewPager);
-
-        if(conexionInternet()){
-
-        }
-
-
     }
-    private View.OnClickListener onClickListener=new View.OnClickListener(){
-        @Override
-        public void onClick(View v) {
-            if(v ==  fbutton)
-                fbutton_onClick();
-        }
-    };
-
-    //Botón flotante
-    private void fbutton_onClick(){
-        if(conexionInternet()){ //Verifica si hay internet
-           Toast.makeText(this, "Descargando contenido", Toast.LENGTH_SHORT).show();
-            FragmentProductos productos = new FragmentProductos();
-            try{
-                productos.descargarProductos(); //Si hay internet, descarga los productos
-            }catch (Exception e){
-                Log.e("Error FloatButton: ",e.getLocalizedMessage());
-            }
-        }else{ //Si no
-            Toast.makeText(this, "Sin conexión a internet", Toast.LENGTH_SHORT).show();
-        }
-        }
 
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();

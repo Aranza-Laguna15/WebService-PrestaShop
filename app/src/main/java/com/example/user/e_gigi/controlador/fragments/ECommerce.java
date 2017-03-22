@@ -18,7 +18,7 @@ import com.example.user.e_gigi.R;
 public class ECommerce extends Fragment {
 
 private WebView webView;
-String url = "http://e-gigi.com";
+String url = "http://www.e-gigi.com/shop/index.php";
 
 
     public ECommerce() {
@@ -50,7 +50,7 @@ String url = "http://e-gigi.com";
 
 
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            if (Uri.parse(url).getHost().equals("http://e-gigi.com")) {
+            if (Uri.parse(url).getHost().equals("http://www.e-gigi.com/shop/index.php")) {
 
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 view.getContext().startActivity(intent);

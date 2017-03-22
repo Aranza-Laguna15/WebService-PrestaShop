@@ -127,10 +127,9 @@ public class FragmentProductos extends Fragment {
     protected void onPostExecute(Cursor cursor){
         if(cursor != null && cursor.getCount() > 0){
             adapter.swapCursor(cursor);
-        }else if(cursor==null){
-            descargarProductos();
         }else{
-            Toast.makeText(getActivity(),"Error al cargar Productos",Toast.LENGTH_SHORT).show();
+            descargarProductos();
+           Toast.makeText(getActivity(),"Descargando Productos",Toast.LENGTH_SHORT).show();
         }
     }
 }
@@ -162,7 +161,7 @@ public class FragmentProductos extends Fragment {
     public void procesarRespuesta(JSONObject response){
         try{
             String estado = response.getString("estado");
-            String titulo, descripcion,fecha,categoria,precio,stock,idProduct;
+            String titulo, descripcion,fecha,categoria,precio,stock,idProduct,imagen;
 
             switch (estado){
                 case "1":
@@ -176,7 +175,8 @@ public class FragmentProductos extends Fragment {
                          fecha=js.getString("date"),
                          categoria=js.getString("category"),
                          precio=js.getString("price"),
-                         stock=js.getString("stock")
+                         stock=js.getString("stock"),
+                         imagen=js.getString("link_image")
                        );
                       chargeProducts(products);
                 }
@@ -217,8 +217,10 @@ public class FragmentProductos extends Fragment {
         }
         protected void onPostExecute(String res){
             if(conexionInternet()){
+                adapter.clear();
                 descargarProductos();
                 refreshLayout.setRefreshing(false);
+                cargarSQL();
                 Toast.makeText(getActivity(),"Actualización completa",Toast.LENGTH_SHORT).show();
             }else{
                 refreshLayout.setRefreshing(false);

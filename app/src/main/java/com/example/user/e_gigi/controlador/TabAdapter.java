@@ -18,7 +18,7 @@ public class TabAdapter extends FragmentPagerAdapter {
    final int PAGE_COUNT = 4;
     boolean fragmentTransaction = false;
     private String tabTitles[] =
-            new String[] {"E-GiGi", "Productos", "E-Commerce","Comentarios"};
+            new String[] {"E-GiGi", "Productos", "E-Commerce","Pedidos"};
 
 
     public TabAdapter(FragmentManager fm ) {

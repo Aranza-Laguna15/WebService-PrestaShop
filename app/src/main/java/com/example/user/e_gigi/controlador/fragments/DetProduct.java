@@ -16,6 +16,7 @@ import com.example.user.e_gigi.R;
 import com.example.user.e_gigi.modelo.Products;
 import com.example.user.e_gigi.tools.Constantes;
 import com.example.user.e_gigi.web.SQLiteDB;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Aranza on 09/02/2017.
@@ -25,7 +26,7 @@ import com.example.user.e_gigi.web.SQLiteDB;
 public class DetProduct extends Fragment {
     private static final String TAG = DetProduct.class.getSimpleName();
 
- private ImageView cabecera;
+ private ImageView det_photo;
     private TextView txt_titulo;
     private TextView txt_descripcion;
     private TextView txt_fecha;
@@ -59,7 +60,7 @@ public class DetProduct extends Fragment {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_detail_products, container, false);
 
-        cabecera=(ImageView)view.findViewById(R.id.product);
+        det_photo=(ImageView)view.findViewById(R.id.detail_photo);
         txt_titulo=(TextView)view.findViewById(R.id.det_product_name);
         txt_descripcion=(TextView)view.findViewById(R.id.descripcion);
         txt_fecha=(TextView)view.findViewById(R.id.det_date_product);
@@ -67,7 +68,7 @@ public class DetProduct extends Fragment {
         txt_precio=(TextView)view.findViewById(R.id.det_precio);
         txt_stock= (TextView)view.findViewById(R.id.det_stock);
 
-       extra = getArguments().getString(Constantes.EXTRA_ID);
+        extra = getArguments().getString(Constantes.EXTRA_ID);
 
         sqLiteDB = new SQLiteDB(getActivity());
 
@@ -80,9 +81,20 @@ public class DetProduct extends Fragment {
         txt_titulo.setText(products.getTitulo());
         txt_descripcion.setText(products.getDescripcion());
         txt_fecha.setText(products.getFecha());
-        txt_precio.setText("$"+products.getPrecio());
+        String precio =products.getPrecio();
+        precio= precio.substring(0,5);
+        txt_precio.setText("$"+precio);
         txt_categoria.setText(products.getCategoria());
         txt_stock.setText(products.getStock());
+
+        String url=products.getImagen();
+
+        Picasso.with(getActivity())
+                .load("http://"+url)
+                .fit()
+                .error(R.drawable.ic_broken_image)
+                .tag(getActivity())
+                .into(det_photo);
     }
 
     private void cargarSQL(){

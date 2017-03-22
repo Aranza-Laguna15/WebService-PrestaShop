@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import com.example.user.e_gigi.R;
 import com.example.user.e_gigi.controlador.fragments.DetProduct;
 import com.example.user.e_gigi.tools.Constantes;
+import com.example.user.e_gigi.web.SQLiteDB;
 
 /**
  * Created by Aranza on 27/02/2017.

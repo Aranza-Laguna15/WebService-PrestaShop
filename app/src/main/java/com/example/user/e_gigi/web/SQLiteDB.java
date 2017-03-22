@@ -12,6 +12,7 @@ import com.example.user.e_gigi.modelo.Products;
 /**
  * Created by Aranza on 10/03/2017.
  * Clase de conexion a SQLite
+ *
  */
 
 public class SQLiteDB extends SQLiteOpenHelper{
@@ -33,6 +34,7 @@ public class SQLiteDB extends SQLiteOpenHelper{
         + Products.ProductsEntry.categoria + " TEXT NOT NULL,"
         + Products.ProductsEntry.precio + " TEXT NOT NULL,"
         + Products.ProductsEntry.stock + " TEXT NOT NULL,"
+        + Products.ProductsEntry.imagen + " TEXT NOT NULL,"
                 + " UNIQUE (" + Products.ProductsEntry.ID + "))");
 
     }
@@ -51,6 +53,7 @@ public class SQLiteDB extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try{
             db.execSQL("DROP TABLE IF EXISTS "+Products.ProductsEntry.TABLE_NAME);
+            Log.e("CORRECT DROP TABLE: ",Products.ProductsEntry.TABLE_NAME );
         }catch (SQLiteException e){
             Log.e("ERROR DROP TABLE: ", e.getLocalizedMessage());
         }
