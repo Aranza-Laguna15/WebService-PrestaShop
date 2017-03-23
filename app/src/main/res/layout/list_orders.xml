@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cv_orders"
+        android:layout_gravity="center"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor= "@color/cardview_light_background" >
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:scaleType="centerCrop"
+                android:layout_alignParentTop="true" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/customer"
+                android:text="Customer"
+                android:textSize="30sp"
+                android:textColor="@color/md_white_1000"
+                android:textAlignment="center"
+                android:layout_alignParentTop="true" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="200dp"
+                android:layout_height="20dp"
+                android:layout_below="@+id/customer"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_calendar"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textAlignment="center"
+                    android:layout_marginRight="3dp"
+                    android:tint="@color/md_white_1000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/date"
+                    android:text="00-00-0000"
+                    android:textColor="@color/md_white_1000"
+                    android:layout_below="@+id/det_product_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/cover">
+
+                <TextView
+                    android:id="@+id/reference_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Referencia"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="7dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/reference"
+                    android:text="Referencia"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textAlignment="center"
+                    android:layout_below="@+id/reference_label"
+                    android:layout_alignStart="@+id/reference_label"
+                    android:layout_marginTop="9dp" />
+
+                <TextView
+                    android:id="@+id/total_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@android:color/black"
+                    android:layout_marginStart="74dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/reference" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/total"
+                    android:text="Total"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textAlignment="center"
+                    android:layout_alignBaseline="@+id/reference"
+                    android:layout_alignBottom="@+id/reference"
+                    android:layout_alignStart="@+id/total_label" />
+
+                <TextView
+                    android:id="@+id/country_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="País"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@android:color/black"
+                    android:layout_below="@+id/reference"
+                    android:layout_alignStart="@+id/reference"
+                    android:layout_marginTop="11dp" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/country"
+                    android:text="Pais"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textAlignment="center"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignStart="@+id/country_label" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

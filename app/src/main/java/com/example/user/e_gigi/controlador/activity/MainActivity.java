@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private long lastPress=0;
     private long timeLimit=2000;
     ViewPager viewPager;
-    FloatingActionButton fbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main,menu);
         return super.onCreateOptionsMenu(menu);
     }
 

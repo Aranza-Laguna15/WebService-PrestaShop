@@ -114,8 +114,8 @@ public class Orders {
         values.put(OrdersEntry.ID,idOrder);
         values.put(OrdersEntry.reference,reference);
         values.put(OrdersEntry.total,total);
-        values.put(OrdersEntry.date,date);
         values.put(OrdersEntry.payment,payment);
+        values.put(OrdersEntry.date,date);
         values.put(OrdersEntry.customer,customer);
         values.put(OrdersEntry.state,state);
         values.put(OrdersEntry.country,country);
@@ -123,7 +123,7 @@ public class Orders {
     }
 
     public static abstract class OrdersEntry implements BaseColumns {
-        public static final String TABLE_NAME="pedidos";
+        public static final String TABLE_ORDERS="pedidos";
 
         public static final String ID="id_order";
         public static final String reference="reference";

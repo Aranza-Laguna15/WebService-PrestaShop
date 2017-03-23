@@ -18,17 +18,15 @@ import java.util.TimerTask;
  */
 
 public class Splash extends Activity {
-ImageView imageView;
     private static final long Splash_delay = 3000;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash);
-        imageView=(ImageView)this.findViewById(R.id.imageView);
-
         TimerTask task =  new TimerTask() {
             @Override
             public void run() {

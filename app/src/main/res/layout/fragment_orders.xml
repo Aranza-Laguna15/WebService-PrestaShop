@@ -4,17 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.user.e_gigi.controlador.fragments.FragmentOrders">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
+<LinearLayout android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshOrders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_comments"
+                android:id="@+id/recycler_orders"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="3dp"
                 android:scrollbars="vertical" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
     </LinearLayout>
 
 </FrameLayout>

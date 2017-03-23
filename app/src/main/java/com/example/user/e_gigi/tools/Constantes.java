@@ -9,9 +9,7 @@ public class Constantes {
     public static final String EXTRA_ID = "IDEXTRA";
 
     public static final String GET_PRODUCTOS= "http://www.e-gigi.com/shop/webservice/php/getAllProduct.php";
-  /*  public static final String GET_BY_ID= "http://www.e-gigi.com/shop/webservice/php/getByIdProduct.php";
-    public static final String GET_COMMENTS= "http://www.e-gigi.com/shop/webservice/php/getAllComments.php";
-    public static final String GET_PEDIDOS= "http://www.e-gigi.com/shop/webservice/php/getAllPedidos.php";*/
+    public static final String GET_PEDIDOS= "http://www.e-gigi.com/shop/webservice/php/getAllPedidos.php";
 
 
 }

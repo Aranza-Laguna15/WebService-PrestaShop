@@ -125,7 +125,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
             v.setOnClickListener(this);
         }
         public void onClick(View v){
-            Log.e("ADAPTER POSITION", String.valueOf(getAdapterPosition()));
             listener.onItemClick(v,getAdapterPosition());
         }
     }

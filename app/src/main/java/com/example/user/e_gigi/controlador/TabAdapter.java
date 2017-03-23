@@ -47,7 +47,7 @@ public class TabAdapter extends FragmentPagerAdapter {
                 fragmentTransaction = true;
                 break;
             case 3:
-                frag= FragmentOrders.newInstace();
+                frag= FragmentOrders.newInstance();
                 fragmentTransaction=true;
                 break;
         }

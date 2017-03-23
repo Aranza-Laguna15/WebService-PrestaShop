@@ -25,18 +25,17 @@ public class SQLiteDB extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE "+ Products.ProductsEntry.TABLE_NAME + " ("
-        + Products.ProductsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-        + Products.ProductsEntry.ID + " TEXT NOT NULL,"
-        + Products.ProductsEntry.titulo + " TEXT NOT NULL,"
-        + Products.ProductsEntry.descripcion + " TEXT NOT NULL,"
-        + Products.ProductsEntry.fecha + " TEXT NOT NULL,"
-        + Products.ProductsEntry.categoria + " TEXT NOT NULL,"
-        + Products.ProductsEntry.precio + " TEXT NOT NULL,"
-        + Products.ProductsEntry.stock + " TEXT NOT NULL,"
-        + Products.ProductsEntry.imagen + " TEXT NOT NULL,"
-                + " UNIQUE (" + Products.ProductsEntry.ID + "))");
-
+            db.execSQL("CREATE TABLE " + Products.ProductsEntry.TABLE_NAME + " ("
+                    + Products.ProductsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + Products.ProductsEntry.ID + " TEXT NOT NULL,"
+                    + Products.ProductsEntry.titulo + " TEXT NOT NULL,"
+                    + Products.ProductsEntry.descripcion + " TEXT NOT NULL,"
+                    + Products.ProductsEntry.fecha + " TEXT NOT NULL,"
+                    + Products.ProductsEntry.categoria + " TEXT NOT NULL,"
+                    + Products.ProductsEntry.precio + " TEXT NOT NULL,"
+                    + Products.ProductsEntry.stock + " TEXT NOT NULL,"
+                    + Products.ProductsEntry.imagen + " TEXT NOT NULL,"
+                    + " UNIQUE (" + Products.ProductsEntry.ID + "))");
     }
 
     public long saveProducts(Products products){
@@ -48,12 +47,10 @@ public class SQLiteDB extends SQLiteOpenHelper{
         );
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         try{
             db.execSQL("DROP TABLE IF EXISTS "+Products.ProductsEntry.TABLE_NAME);
-            Log.e("CORRECT DROP TABLE: ",Products.ProductsEntry.TABLE_NAME );
         }catch (SQLiteException e){
             Log.e("ERROR DROP TABLE: ", e.getLocalizedMessage());
         }
