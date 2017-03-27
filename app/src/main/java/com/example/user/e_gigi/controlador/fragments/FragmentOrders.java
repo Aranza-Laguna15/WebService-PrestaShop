@@ -121,8 +121,12 @@ public class FragmentOrders extends Fragment {
             if(cursor != null && cursor.getCount() > 0){
                 adapter.swapCursor(cursor);
             }else{
-                descargarPedidos();
-                Toast.makeText(getActivity(),"Descargando Pedidos",Toast.LENGTH_SHORT).show();
+                if(conexionInternet()){
+                    descargarPedidos();
+                    Toast.makeText(getActivity(),"Descargando Pedidos",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(),"No hay conexión a internet",Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }

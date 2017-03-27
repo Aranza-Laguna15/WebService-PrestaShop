@@ -128,8 +128,13 @@ public class FragmentProductos extends Fragment {
         if(cursor != null && cursor.getCount() > 0){
             adapter.swapCursor(cursor);
         }else{
-            descargarProductos();
-           Toast.makeText(getActivity(),"Descargando Productos",Toast.LENGTH_SHORT).show();
+            if(conexionInternet()){
+                descargarProductos();
+                Toast.makeText(getActivity(),"Descargando Productos",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(getActivity(),"No hay conexión a internet",Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 }
