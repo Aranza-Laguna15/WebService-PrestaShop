@@ -119,7 +119,7 @@ public class FragmentOrders extends Fragment {
 
         protected void onPostExecute(Cursor cursor){
             if(cursor != null && cursor.getCount() > 0){
-                adapter.swapCursor(cursor);
+               adapter.swapCursor(cursor);
             }else{
                 if(conexionInternet()){
                     descargarPedidos();

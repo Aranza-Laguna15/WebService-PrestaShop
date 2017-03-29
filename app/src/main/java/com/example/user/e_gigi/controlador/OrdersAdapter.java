@@ -2,9 +2,7 @@ package com.example.user.e_gigi.controlador;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 import com.example.user.e_gigi.R;
 
 import static com.example.user.e_gigi.web.SQLiteDB.DATABASE_NAME;
-import static java.security.AccessController.getContext;
 
 /**
  * Created by Aranza on 23/03/2017.
@@ -74,8 +71,6 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.OrdersView
         customer=items.getString(6);
         country=items.getString(8);
         state=items.getString(7);
-
-        Log.e("ITEMS", "reference: "+reference+" total:"+total+" date:"+date+" customer:"+customer+" country:"+country+" state:"+state);
 
         switch (state){
             case "Canceled":
